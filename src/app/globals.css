@@ -334,13 +334,28 @@ body {
       flex-direction: column;
     }
   
-    .hero-banner .background {
+    /* .hero-banner .background {
       flex-direction: column;
+    } */
+
+    .hero-banner .background img.left{
+      display: none;
     }
+  .hero-banner .background img.right {
+    width: 100%;
+  }
+  
+  .hero-banner .background img.center {
+    width: 0%;
+    object-position: center;
+  }
   
     .hero-banner .background img {
       width: 100%;
       height: auto;
+    }
+    .centerD{
+      display: none;
     }
   
     .hero-banner .text {
@@ -405,6 +420,11 @@ body {
     .lilo-special .image img {
       width: 100%;
     }
+
+    .lilo-special .image {
+    flex: 1 1 300px;
+    text-align: right;
+  }
   }
 
 

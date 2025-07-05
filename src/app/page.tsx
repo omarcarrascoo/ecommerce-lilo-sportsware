@@ -101,9 +101,9 @@ const Home: NextPage = () => {
 
       <section className="hero-banner">
         <div className="background">
-          <Image src="/assets/imgs/izquierdo.png" alt="Left section" width={1600} height={900} style={{ objectFit: 'cover' }} className="left" />
-          <Image src="/assets/imgs/enmedio.png" alt="Center section" width={1600} height={900} style={{ objectFit: 'cover' }} className="center" />
-          <Image src="/assets/imgs/derecho.png" alt="Right section" width={1600} height={6900} style={{ objectFit: 'cover' }} className="right" />
+          <Image src="/assets/imgs/d7.jpg" alt="Left section" width={1600} height={900} style={{ objectFit: 'cover' }} className="left" />
+          <Image src="/assets/imgs/d3.JPG" alt="Center section" width={1600} height={900} style={{ objectFit: 'cover' }} className="center centerD" />
+          <Image src="/assets/imgs/d1.JPG" alt="Right section" width={1600} height={6900} style={{ objectFit: 'cover' }} className="right" />
         </div>
         <div className="overlay" />
         <div className="text">New Textures. New Shapes. New Energy.</div>
