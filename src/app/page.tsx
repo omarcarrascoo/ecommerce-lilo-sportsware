@@ -1,103 +1,148 @@
-import Image from "next/image";
+"use client"
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import Script from 'next/script'
+import MainHeader from './components/mainHeader'
+import { products } from './data'
+import { useState } from 'react'
+import MainFooter from './components/mainFooter'
 
-export default function Home() {
+const Home: NextPage = () => {
+  const [selectedColor, setSelectedColor] = useState<string | null>(null)
+
+  const handleColorChange = (productId: string, color: string) => {
+    setSelectedColor(color)
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Head>
+        <title>LILO</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/main.style.css" />
+      </Head>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <MainHeader />
+
+      <main className="hero">
+        <div className="image-wrapper">
+          <Image src="/assets/imgs/der.png" alt="Model left" width={600} height={50} style={{ objectFit: 'cover' }} className="left-image" />
+          <Image src="/assets/imgs/izq.png" alt="Model right" width={600} height={50} style={{ objectFit: 'cover' }} className="right-image" />
+        </div>
+        <div className="hero-text">
+          <h1>
+            Soft power.<br />
+            Clean cuts.<br />
+            Designed to<br />
+            move with<br />
+            you.
+          </h1>
+          <p className="sub">Own the Movement</p>
+          <Link href="/shop" className="button">Shop Now</Link>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Ticker Footer */}
+      <footer className="footer-bar">
+        <div className="ticker">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i}>LILO ACTIVEWEAR</span>
+          ))}
+        </div>
       </footer>
-    </div>
-  );
+
+      <section className="product-gallery">
+        <h2>THE ACTIVE LIFESTYLE</h2>
+        <p>Designed for motion, crafted for life. This collection moves with you—whether you’re flowing through a workout, walking through the city, or grounding yourself in stillness.</p>
+        <br />
+        <br />
+        <div className="product-grid">
+          {products.map((p) => (
+            <div key={p.id} className="product-card" data-product-id={p.id}>
+              <Link href={`/product/${p.id}`}>
+                <>
+                  {/* Display the first image or the one based on the selected color */}
+                  <Image
+                    src={selectedColor ? p.colors[selectedColor][0] : p.src}
+                    alt={p.name}
+                    width={300}
+                    height={400}
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <h3>{p.name}</h3>
+                  <p>${p.price} MXN</p>
+                  <div className="colors">
+                    {Object.keys(p.colors).map((color) => (
+                      <span
+                        key={color}
+                        className={`dot ${color}`}
+                        onClick={() => handleColorChange(p.id, color)}
+                      />
+                    ))}
+                  </div>
+                  <span className="view-button">View</span>
+                </>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Ticker Footer */}
+      <footer className="footer-bar">
+        <div className="ticker">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i}>LILO ACTIVEWEAR</span>
+          ))}
+        </div>
+      </footer>
+
+      <section className="hero-banner">
+        <div className="background">
+          <Image src="/assets/imgs/izquierdo.png" alt="Left section" width={1600} height={900} style={{ objectFit: 'cover' }} className="left" />
+          <Image src="/assets/imgs/enmedio.png" alt="Center section" width={1600} height={900} style={{ objectFit: 'cover' }} className="center" />
+          <Image src="/assets/imgs/derecho.png" alt="Right section" width={1600} height={6900} style={{ objectFit: 'cover' }} className="right" />
+        </div>
+        <div className="overlay" />
+        <div className="text">New Textures. New Shapes. New Energy.</div>
+      </section>
+
+      {/* Ticker Footer */}
+      <footer className="footer-bar">
+        <div className="ticker">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i}>LILO ACTIVEWEAR</span>
+          ))}
+        </div>
+      </footer>
+
+      <section className="lilo-special">
+        <div className="text">
+          <h2>WHAT MAKES LILO SPECIAL?</h2>
+          <h3>Not just activewear. A new way to feel your body.</h3>
+          <p>Lilo is where design meets intention. Every piece is crafted to move with you — on the mat, in motion, or at rest. We don’t chase trends. We create elevated essentials that combine form, function, and feeling. Thoughtful cuts. Sculpting fabrics. A second-skin softness made to empower, not restrict.</p>
+        </div>
+        <div className="image">
+          <Image src="/assets/imgs/1Y7A1012.png" alt="Lilo purple set with tennis balls" width={600} height={600} />
+        </div>
+      </section>
+
+      {/* Ticker Footer */}
+      <footer className="footer-bar">
+        <div className="ticker">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i}>LILO ACTIVEWEAR</span>
+          ))}
+        </div>
+      </footer>
+      <MainFooter/>
+
+      {/* External JS for modal interactions and ticker */}
+      <Script src="/scripts/main.scripts.js" strategy="afterInteractive" />
+    </>
+  )
 }
+
+export default Home
